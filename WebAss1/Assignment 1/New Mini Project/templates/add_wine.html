@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Wine{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Add Wine Record</h1>
+    <form method="POST">
+        <label for="fixed_acidity">Fixed Acidity:</label>
+        <input type="number" name="fixed_acidity" step="0.1" required>
+        <label for="volatile_acidity">Volatile Acidity:</label>
+        <input type="number" name="volatile_acidity" step="0.1" required>
+        <label for="citric_acid">Citric Acid:</label>
+        <input type="number" name="citric_acid" step="0.1" required>
+        <label for="residual_sugar">Residual Sugar:</label>
+        <input type="number" name="residual_sugar" step="0.1" required>
+        <label for="chlorides">Chlorides:</label>
+        <input type="number" name="chlorides" step="0.001" required>
+        <label for="quality_score">Quality Score:</label>
+        <input type="number" name="quality_score" required>
+        <input type="submit" value="Add Wine" class="button">
+    </form>
+</div>
+{% endblock %}

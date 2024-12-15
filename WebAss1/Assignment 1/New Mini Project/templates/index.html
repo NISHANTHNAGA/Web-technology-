@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Wine Records{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Wine Quality Records</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fixed Acidity</th>
+                <th>Volatile Acidity</th>
+                <th>Citric Acid</th>
+                <th>Residual Sugar</th>
+                <th>Chlorides</th>
+                <th>Quality Score</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for wine in content %}
+            <tr>
+                <td>{{ wine.id }}</td>
+                <td>{{ wine.fixed_acidity }}</td>
+                <td>{{ wine.volatile_acidity }}</td>
+                <td>{{ wine.citric_acid }}</td>
+                <td>{{ wine.residual_sugar }}</td>
+                <td>{{ wine.chlorides }}</td>
+                <td>{{ wine.quality_score }}</td>
+                <td>
+                    <a href="/update/{{ wine.id }}" class="button">Update</a>
+                    <button class="button" onclick="confirmDelete({{ wine.id }})">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    function confirmDelete(id) {
+        if (confirm("Are you sure you want to delete this wine?")) {
+            fetch(`/delete/${id}`, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(error => console.error('Error:', error));
+        }
+    }
+</script>
+{% endblock %}
